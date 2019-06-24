@@ -1,3 +1,79 @@
-<p>
-  profile works!
-</p>
+
+<div class="container">
+  <div id="profile" *ngIf="user">
+    <div>
+        <h1>Välkommen!</h1>
+        <span id="logout" (click)="logout()">Logga ut <i class="fas fa-sign-out-alt"></i></span>
+    </div>
+    <div id="profile-info" class="profile-info" *ngIf="!editingInfo">
+      <fieldset>
+          <div><i class="fas fa-user-alt"></i> {{ user.firstName }} {{ user.surName }} | {{ user.birthDate }}</div>
+          <hr>
+          <div>
+            <i class="fas fa-envelope"></i> {{ user.email }}
+          </div>
+          <div><i class="fas fa-key"></i> ********</div>
+          <hr>
+          <div>
+            <div><i class="fas fa-map-pin"></i> {{ user.dAddress }}</div>
+            <div>{{ user.dPostalcode }} {{ user.dCity }}, {{ user.dCountry }}</div>
+          </div>
+          <hr>
+          <div>
+            <div><i class="fas fa-file-invoice"></i> {{ user.address }}</div>
+            <div>{{ user.postalcode }} {{ user.city }}, {{ user.country}}</div>
+          </div>
+          <hr>
+          <button (click)="editingInfo = true"><i class="fas fa-edit"></i> Ändra</button>
+      </fieldset>
+    </div>
+
+    <form [formGroup]="editForm" (submit)="updateInfo()" id="register-form" *ngIf="editingInfo" class="container">
+        <fieldset>
+            <div>
+              <i class="fas fa-user-alt"></i>
+              <input class="edit-input" type="text" formControlName="firstName" placeholder="Förnamn">
+              <input class="edit-input" type="text" formControlName="surName" placeholder="Efternamn">
+            </div>
+            <hr>
+            <div>
+              <i class="fas fa-envelope"></i>
+              <input class="edit-input full-w" type="email" formControlName="email" placeholder="E-post">
+            </div>
+            <div>
+              <i class="fas fa-key"></i>
+              <input class="edit-input" type="password" placeholder="New password" formControlName="password">
+              </div>
+            <hr>
+            <div>
+              <div>
+                <i class="fas fa-map-pin"></i>
+                <input class="edit-input" type="text" formControlName="dAddress" placeholder="Leveransadress">
+              </div>
+              <div>
+                  <input class="edit-input" type="text" formControlName="dPostalcode" placeholder="Postnummer">
+                  <input class="edit-input" type="text" formControlName="dCity" placeholder="Stad">
+                  <input class="edit-input" type="text" formControlName="dCountry" placeholder="Land">
+              </div>
+            </div>
+            <hr>
+            <div>
+              <div>
+                <i class="fas fa-file-invoice"></i> 
+                <input class="edit-input" type="text" formControlName="address" placeholder="Faktureringsadress">
+              </div>
+              <div>
+                <input class="edit-input" type="text" formControlName="postalcode" placeholder="Postnummer">
+                <input class="edit-input" type="text" formControlName="city" placeholder="Ort">
+                <input class="edit-input" type="text" formControlName="country" placeholder="Land">
+              </div>
+            </div>
+            <hr>
+            <div id="button-container">
+              <button class="button success" type="submit"><i class="fas fa-save"></i> Spara</button>
+              <button class="button dark" type="button" (click)="cancel()"><i class="far fa-window-close"></i> Avbryt</button>
+            </div>
+        </fieldset>
+      </form>
+    </div>
+</div>

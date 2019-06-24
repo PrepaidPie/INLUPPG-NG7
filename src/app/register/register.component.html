@@ -1,3 +1,64 @@
-<p>
-  register works!
-</p>
+<form [formGroup]="registerForm" (submit)="register()" id="register-form">
+  <div class="container">
+    <div>
+      <input formControlName="firstName" type="text" placeholder="Förnamn (Mellannamn)" id="firstname">
+    </div>
+    <div>
+      <input formControlName="surName" type="text" placeholder="Efternamn" id="surname">
+    </div>
+    <div></div>
+    <div>
+      <input formControlName="birthDate" type="date" placeholder="Födelsedatum" id="birthdate">
+    </div>
+  </div>
+
+  <div class="container">
+    <div>
+      <input formControlName="address" type="text" placeholder="Adress" id="address">
+    </div>
+    <div>
+      <input formControlName="postalcode" type="text" placeholder="Postnummer" id="postalcode">
+    </div>
+    <div>
+      <input formControlName="city" type="text" placeholder="Ort" id="city">
+    </div>
+    <div>
+      <input formControlName="country" type="text" placeholder="Land" id="country">
+    </div>
+    <div></div>
+    <div>
+      <input type="checkbox" name="sameAddress" id="sameAddress" (change)="cloneAddress()">
+    </div>
+  </div>
+
+  <div class="container" id="deliveryaddress">
+      <div>
+          <input formControlName="dAddress" type="text" placeholder="Adress" id="daddress">
+        </div>
+        <div>
+          <input formControlName="dPostalcode" type="text" placeholder="Postnummer" id="dpostalcode">
+        </div>
+        <div>
+          <input formControlName="dCity" type="text" placeholder="Ort" id="dcity">
+        </div>
+        <div>
+          <input formControlName="dCountry" type="text" placeholder="Land" id="dcountry">
+        </div>
+  </div>
+
+  <div class="container">
+  <div>
+    <input formControlName="email" type="text" placeholder="E-post" id="email">
+  </div>
+  <div>
+    <input formControlName="password" type="password" autocomplete="off" placeholder="Lösenord" id="password">
+  </div>
+  <div></div>
+  <div>
+    <input type="password" autocomplete="off" placeholder="Bekräfta lösenord" id="confirm_password">
+  </div>
+  </div>
+  <div>
+    <button type="submit" [disabled]="!registerForm.valid">Registrera</button>
+  </div>
+</form>
